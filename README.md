@@ -1,2 +1,2 @@
-# my-movie-website
+# Kid B. Movies
 My movie website.
