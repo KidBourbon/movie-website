@@ -1,0 +1,24 @@
+/* Globals */
+:root {
+	--sm: 14rem;
+	--md: 16rem;
+	--lg: 18rem;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 6.25%;
+}
+
+body {
+	width: 100%;
+	min-width: 320px;
+	height: auto;
+	font-family: 'Quicksand', sans-serif;
+	font-size: var(--md);
+}
