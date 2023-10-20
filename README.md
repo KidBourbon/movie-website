@@ -1,2 +1,2 @@
 # Kid B. Movies
-My movie website.
+Personal movie website.
