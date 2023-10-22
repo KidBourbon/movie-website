@@ -12,7 +12,7 @@
 		/>
 		<link rel="stylesheet" href="./styles/app.css" />
 
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 		<script defer src="./lib/config.js"></script>
 		<script defer src="./lib/main.js"></script>
 		<script defer src="./lib/nodes.js"></script>
@@ -36,8 +36,8 @@
 
 		<section id="trending-preview" class="trending-preview">
 			<div class="trending-preview__header">
-				<h2 class="trending-preview__title">Tendencias</h2>
-				<button class="trending-preview__btn">Ver más</button>
+				<h2 class="trending-preview__title">Trending</h2>
+				<button class="trending-preview__btn">See more</button>
 			</div>
 
 			<article
@@ -47,13 +47,12 @@
 		</section>
 
 		<section id="categories-preview" class="categories-preview">
-			<h2 class="categories-preview__title">Categorías</h2>
+			<h2 class="categories-preview__title">Categories</h2>
 
-			<article class="categories-preview__list">
-				<!-- <div class="category">
-					<h3 id="id28" class="category__title">Romance</h3>
-				</div> -->
-			</article>
+			<article
+				id="categories-preview-list"
+				class="categories-preview__list"
+			></article>
 		</section>
 
 		<section id="generic-list" class="generic-list inactive">
