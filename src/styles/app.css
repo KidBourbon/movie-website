@@ -246,91 +246,80 @@ footer {
 	text-overflow: ellipsis;
 }
 
-.category__title::before {
-	content: '••••';
-	color: transparent;
-	/* TODO: cambiar color por ID de la categoría */
-	background-color: var(--idColor);
-	border-radius: 8px;
-	margin-right: 8px;
-	width: 8px;
-	height: 8px;
+#id28::before {
+	content: '🐱‍👤 ';
 }
 
-#id28 {
-	--idColor: var(--yellow);
+#id12::before {
+	content: '🏹 ';
 }
 
-#id12 {
-	--idColor: var(--red);
+#id16::before {
+	content: '🎨 ';
 }
 
-#id16 {
-	--idColor: var(--green);
+#id35::before {
+	content: '😂 ';
 }
 
-#id35 {
-	--idColor: var(--lightBlue);
+#id80::before {
+	content: '🔪 ';
 }
 
-#id80 {
-	--idColor: var(--darkBlue);
+#id99::before {
+	content: '🎥 ';
 }
 
-#id99 {
-	--idColor: var(--purple-dark-1);
+#id18::before {
+	content: '🎭 ';
 }
 
-#id18 {
-	--idColor: var(--purple-medium-1);
+#id10751::before {
+	content: '👨‍👩‍👧‍👦 ';
 }
 
-#id10751 {
-	--idColor: var(--yellow);
+#id14::before {
+	content: '🧚‍♀️ ';
 }
 
-#id14 {
-	--idColor: var(--red);
+#id36::before {
+	content: '📜 ';
 }
 
-#id36 {
-	--idColor: var(--green);
+#id27::before {
+	content: '😱 ';
 }
 
-#id27 {
-	--idColor: var(--lightBlue);
+#id10402::before {
+	content: '🎵 ';
 }
 
-#id10402 {
-	--idColor: var(--darkBlue);
+#id9648::before {
+	content: '🕵️‍♀️ ';
 }
 
-#id9648 {
-	--idColor: var(--purple-dark-1);
+#id10749::before {
+	content: '💞 ';
 }
 
-#id10749 {
-	--idColor: var(--purple-medium-1);
+#id878::before {
+	content: '👽 ';
 }
 
-#id878 {
-	--idColor: var(--yellow);
+#id10770::before {
+	content: '📺 ';
 }
 
-#id10770 {
-	--idColor: var(--red);
+#id53::before {
+	content: '👮‍♂️ ';
 }
 
-#id53 {
-	--idColor: var(--green);
+#id10752::before {
+	content: '💣 ';
 }
 
-#id10752 {
-	--idColor: var(--lightBlue);
-}
-
-#id37 {
-	--idColor: var(--darkBlue);
+#id37::before {
+	content: '🤠 ';
 }
 
 /* Generic List (search, trending & category) */
