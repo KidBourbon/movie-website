@@ -164,11 +164,11 @@ footer {
 }
 
 .header__arrow {
-	font-weight: var(--font-weight-text2);
-	font-size: var(--x-lg);
-	margin-bottom: 16px;
-	cursor: pointer;
 	display: inline-block;
+	margin-bottom: 16px;
+	font-size: var(--x-lg);
+	font-weight: var(--font-weight-text2);
+	cursor: pointer;
 }
 
 .header__arrow--white {
