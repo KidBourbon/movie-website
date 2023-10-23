@@ -3,7 +3,7 @@
 const apiV3 = axios.create({
 	baseURL: 'https://api.themoviedb.org/3',
 	headers: {
-		accept: 'application/json',
+		'Content-Type': 'application/json; charset=UTF-8',
 		Authorization: `Bearer ${ACCESS_TOKEN}`,
 	},
 });
@@ -11,14 +11,6 @@ const apiV3 = axios.create({
 const posterPathWidth300 = 'https://image.tmdb.org/t/p/w300';
 const trendingMoviesPath = '/trending/movie/day';
 const categoryPath = '/genre/movie/list';
-
-const trendingPreviewMovieList = document.getElementById(
-	'trending-preview-movie-list'
-);
-
-const categoriesPreviewList = document.getElementById(
-	'categories-preview-list'
-);
 
 /**
  * Gets trending movies.
@@ -71,7 +63,3 @@ function generateCategoriesPreview(categories) {
     `;
 	});
 }
-
-// Start app
-getTrendingMoviesPreview();
-getCategoriesPreview();
