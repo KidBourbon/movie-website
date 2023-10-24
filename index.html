@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./styles/app.css" />
+
+		<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+		<script defer src="./lib/config.js"></script>
+		<script defer src="./lib/nodes.js"></script>
+		<script defer src="./lib/navigation.js"></script>
+		<script defer src="./lib/main.js"></script>
+
+		<title>Kid B. Movies</title>
+	</head>
+	<body>
+		<header id="header" class="header">
+			<span class="header__arrow inactive">&lt;</span>
+			<h1 class="header__title">Kid B. Movies</h1>
+			<h1 class="header__title header__title--category-view inactive">
+				Action
+			</h1>
+
+			<form id="search-form" class="header__search-form">
+				<input type="text" placeholder="Movie title" />
+				<button id="search-btn">🔍</button>
+			</form>
+		</header>
+
+		<section id="trending-preview" class="trending-preview">
+			<div class="trending-preview__header">
+				<h2 class="trending-preview__title">Trending</h2>
+				<button class="trending-preview__btn">See more</button>
+			</div>
+
+			<article
+				id="trending-preview-movie-list"
+				class="trending-preview__movie-list"
+			>
+				<!-- Trending movies -->
+			</article>
+		</section>
+
+		<section id="categories-preview" class="categories-preview">
+			<h2 class="categories-preview__title">Categories</h2>
+
+			<article id="categories-preview-list" class="categories-preview__list">
+				<!-- Categories -->
+			</article>
+		</section>
+
+		<section id="generic-list" class="generic-list inactive">
+			<!-- Movies -->
+		</section>
+
+		<section id="movie-detail" class="movie-detail inactive">
+			<h1 class="movie-detail__title">Deadpool</h1>
+			<span class="movie-detail__score">7.6</span>
+			<p class="movie-detail__description">
+				Wisecracking mercenary Deadpool battles the evil and powerful Cable and
+				other bad guys to save a boy's life.
+			</p>
+
+			<article class="categories-list">
+				<div class="category">
+					<h3 id="id10749" class="category__title">Romance</h3>
+				</div>
+
+				<div class="category">
+					<h3 id="id18" class="category__title">Drama</h3>
+				</div>
+
+				<div class="category">
+					<h3 id="id28" class="category__title">Action</h3>
+				</div>
+			</article>
+
+			<article class="related-movies">
+				<h2 class="related-movies__title">Películas similares</h2>
+
+				<div class="related-movies__scroll-area">
+					<div class="movie">
+						<img
+							src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+							class="movie__img"
+							alt="Movie title"
+						/>
+					</div>
+
+					<div class="movie">
+						<img
+							src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+							class="movie__img"
+							alt="Movie title"
+						/>
+					</div>
+
+					<div class="movie">
+						<img
+							src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+							class="movie__img"
+							alt="Movie title"
+						/>
+					</div>
+				</div>
+			</article>
+		</section>
+
+		<footer>By Leonardo Collazo Klenina</footer>
+	</body>
+</html>
