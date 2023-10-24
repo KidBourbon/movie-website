@@ -9,26 +9,51 @@ const apiV3 = axios.create({
 });
 
 const posterPathWidth300 = 'https://image.tmdb.org/t/p/w300';
-const trendingMoviesPath = '/trending/movie/day';
-const categoryPath = '/genre/movie/list';
+const pathTrendingMovies = '/trending/movie/day';
+const pathMovieGenres = '/genre/movie/list';
+const pathDiscoverMovie = '/discover/movie';
 
-/**
- * Gets trending movies.
+const queryParamWithGenres = '?with_genres=';
+
+/** Gets all trending movies.
  */
 async function getTrendingMoviesPreview() {
-	const { data } = await apiV3(trendingMoviesPath);
-
+	const { data } = await apiV3(pathTrendingMovies);
 	const movies = data.results;
-	generateTrendingMoviesPreview(movies);
+
+	createMovies(movies, trendingPreviewMovieList);
 }
 
-/**
- * Generates movie cards for each movie in the list.
- * @param {Array} movies List of movies.
+/** Gets movies by category.
  */
-function generateTrendingMoviesPreview(movies) {
+async function getMoviesByCategory(categoryId) {
+	const { data } = await apiV3(
+		pathDiscoverMovie + queryParamWithGenres + categoryId
+	);
+	const movies = data.results;
+
+	createMovies(movies, genericListSection);
+}
+
+/** Gets all categories.
+ *
+ */
+async function getCategoriesPreview() {
+	const { data } = await apiV3(pathMovieGenres);
+	const categories = data.genres;
+
+	createCategories(categories, categoriesPreviewList);
+}
+
+/** Creates movie cards for each movie in the list and places them in a container.
+ * @param {Array} movies List of movies.
+ * @param {HTMLElement} container HTML element as container.
+ */
+function createMovies(movies, container) {
+	container.innerHTML = '';
+
 	movies.forEach((movie) => {
-		trendingPreviewMovieList.innerHTML += `
+		container.innerHTML += `
       <div class="movie">
         <img
           src="${posterPathWidth300}${movie.poster_path}"
@@ -40,21 +65,13 @@ function generateTrendingMoviesPreview(movies) {
 	});
 }
 
-/**
- * Gets all categories.
- */
-async function getCategoriesPreview() {
-	const { data } = await apiV3(categoryPath);
-
-	const categories = data.genres;
-	generateCategoriesPreview(categories);
-}
-
-/**
- * Generates a div for each category in the list.
+/** Creates a HTML structure for each category in the list.
  * @param {Array} categories List of categories.
+ * @param {HTMLElement} container HTML element as container.
  */
-function generateCategoriesPreview(categories) {
+function createCategories(categories, container) {
+	container.innerHTML = '';
+
 	categories.forEach((category) => {
 		/* HTML STRUCTURE */
 		// <div class="category">
@@ -69,10 +86,10 @@ function generateCategoriesPreview(categories) {
 		h3CategoryTitle.classList.add('category__title');
 		h3CategoryTitle.innerText = `${category.name}`;
 		h3CategoryTitle.addEventListener('click', () => {
-			setHash(hashCategory + category.id);
+			setHash(`${hashCategory}${category.id}-${category.name}`);
 		});
 
 		divCategory.appendChild(h3CategoryTitle);
-		categoriesPreviewList.appendChild(divCategory);
+		container.appendChild(divCategory);
 	});
 }
