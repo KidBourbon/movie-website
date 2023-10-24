@@ -1,12 +1,12 @@
 /* Globals */
 :root {
-	--purple-light-1: #fbfafb;
-	--purple-light-2: #eeeaf2;
-	--purple-medium-1: #aa83c8;
-	--purple-medium-2: #8b48bf;
-	--purple-medium-3: #5c218a;
-	--purple-dark-1: #3e0f64;
-	--purple-dark-2: #2a0646;
+	--green-light-1: hwb(75 86% 0%);
+	--green-light-2: hwb(85 66% 9%);
+	--green-medium-1: hwb(96 24% 18%);
+	--green-medium-2: hwb(110 26% 27%);
+	--green-medium-3: hwb(127 23% 36%);
+	--green-dark-1: hwb(141 12% 45%);
+	--green-dark-2: hwb(154 0% 54%);
 
 	--yellow: #eecc75;
 	--green: #cad297;
@@ -37,7 +37,7 @@
 
 html {
 	font-size: 6.25%;
-	background-color: var(--purple-medium-3);
+	background-color: var(--green-medium-3);
 }
 
 body {
@@ -48,8 +48,8 @@ body {
 	font-family: var(--font-family-text);
 	font-size: var(--sm);
 	font-weight: var(--font-weight-text1);
-	color: var(--purple-dark-2);
-	background-color: var(--purple-light-1);
+	color: var(--green-dark-2);
+	background-color: var(--green-light-1);
 }
 
 h1,
@@ -60,38 +60,38 @@ h2 {
 h1 {
 	font-size: var(--lg);
 	font-weight: var(--font-weight-title1);
-	color: var(--purple-dark-2);
+	color: var(--green-dark-2);
 }
 
 h2 {
 	font-size: var(--md);
 	font-weight: var(--font-weight-title2);
-	color: var(--purple-dark-1);
+	color: var(--green-dark-1);
 }
 
 h3 {
 	font-size: var(--sm);
 	font-weight: var(--font-weight-text2);
-	color: var(--purple-dark-2);
+	color: var(--green-dark-2);
 }
 
 input {
 	padding-left: 16px;
 	font-size: var(--md);
-	color: var(--purple-medium-2);
-	background-color: var(--purple-light-2);
+	color: var(--green-medium-2);
+	background-color: var(--green-light-2);
 	border: none;
 }
 
 input::placeholder {
-	color: var(--purple-medium-1);
+	color: var(--green-medium-2);
 	font-family: var(--font-family-text);
 }
 
 button {
-	background-color: var(--purple-dark-1);
+	background-color: var(--green-dark-1);
 	border: none;
-	color: var(--purple-light-2);
+	color: var(--green-light-2);
 	font-weight: var(--font-weight-text2);
 	font-size: var(--x-sm);
 	cursor: pointer;
@@ -172,7 +172,7 @@ footer {
 }
 
 .header__arrow--white {
-	color: var(--purple-light-1);
+	color: var(--green-light-1);
 }
 
 .header__search-form {
@@ -205,18 +205,18 @@ footer {
 }
 
 .trending-preview__btn {
-	border-radius: 8px;
-	height: 32px;
 	width: 72px;
+	height: 32px;
+	border-radius: 8px;
 }
 
 .trending-preview__movie-list {
-	overflow-x: scroll;
-	overflow-y: hidden;
-	white-space: nowrap;
 	height: 241px;
 	padding-left: 24px;
 	padding-bottom: 16px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
 }
 
 .trending-preview__movie-list .movie {
@@ -348,7 +348,7 @@ footer {
 	margin-top: 403px;
 	z-index: 1;
 	position: absolute;
-	background-color: var(--purple-light-1);
+	background-color: var(--green-light-1);
 }
 
 .movie-detail__title {
@@ -410,8 +410,8 @@ footer {
 
 /* Footer */
 footer {
-	background-color: var(--purple-medium-3);
-	color: var(--purple-light-2);
+	background-color: var(--green-dark-1);
+	color: var(--green-light-2);
 	text-align: center;
 	height: 48px;
 	display: flex;
