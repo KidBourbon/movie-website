@@ -56,10 +56,23 @@ async function getCategoriesPreview() {
  */
 function generateCategoriesPreview(categories) {
 	categories.forEach((category) => {
-		categoriesPreviewList.innerHTML += `
-      <div class="category">
-				<h3 id="id${category.id}" class="category__title">${category.name}</h3>
-      </div>
-    `;
+		/* HTML STRUCTURE */
+		// <div class="category">
+		// 	<h3 id="id${category.id}" class="category__title">${category.name}</h3>
+		// </div>
+
+		const divCategory = document.createElement('div');
+		divCategory.classList.add('category');
+
+		const h3CategoryTitle = document.createElement('h3');
+		h3CategoryTitle.id = `id${category.id}`;
+		h3CategoryTitle.classList.add('category__title');
+		h3CategoryTitle.innerText = `${category.name}`;
+		h3CategoryTitle.addEventListener('click', () => {
+			setHash(hashCategory + category.id);
+		});
+
+		divCategory.appendChild(h3CategoryTitle);
+		categoriesPreviewList.appendChild(divCategory);
 	});
 }
