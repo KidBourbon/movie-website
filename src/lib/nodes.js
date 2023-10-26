@@ -12,6 +12,7 @@ const headerTitleCategoryView = document.querySelector(
 	'.header__title--category-view'
 );
 const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
 //#endregion
 
@@ -48,5 +49,5 @@ const movieDetailScore = document.querySelector('.movie-detail__score');
 const movieDetailDescription = document.querySelector(
 	'.movie-detail__description'
 );
-const categoriesList = document.querySelector('.categories-list');
+const categoriesList = document.querySelector('.movie-detail__category-list');
 //#endregion
