@@ -49,5 +49,10 @@ const movieDetailScore = document.querySelector('.movie-detail__score');
 const movieDetailDescription = document.querySelector(
 	'.movie-detail__description'
 );
-const categoriesList = document.querySelector('.movie-detail__category-list');
+const movieDetailCategoriesList = document.querySelector(
+	'.movie-detail__category-list'
+);
+const relatedMoviesScrollArea = document.querySelector(
+	'.related-movies__scroll-area'
+);
 //#endregion
