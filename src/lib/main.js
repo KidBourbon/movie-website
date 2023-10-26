@@ -16,6 +16,10 @@ const pathMovieGenres = '/genre/movie/list';
 const pathDiscoverMovie = '/discover/movie';
 const pathSearchMovie = '/search/movie';
 
+function getPathMovieRecommendations(movieId) {
+	return `${pathMovie}/${movieId}/recommendations`;
+}
+
 /** Gets all trending movies.
  */
 async function getTrendingMoviesPreview() {
@@ -36,6 +40,7 @@ async function getCategoriesPreview() {
 }
 
 /** Gets movies by category.
+ * @param {Number} categoryId The ID of the category.
  */
 async function getMoviesByCategory(categoryId) {
 	const { data } = await apiV3(pathDiscoverMovie, {
@@ -48,7 +53,8 @@ async function getMoviesByCategory(categoryId) {
 	createMovies(movies, genericListSection);
 }
 
-/** Gets a movie by id.
+/** Gets a movie by its id.
+ * @param {Number} movieId The ID of the movie.
  */
 async function getMovieById(movieId) {
 	const { data: movie } = await apiV3(`${pathMovie}/${movieId}`);
@@ -68,10 +74,12 @@ async function getMovieById(movieId) {
 	movieDetailScore.textContent = movie.vote_average;
 	movieDetailDescription.textContent = movie.overview;
 
-	createCategories(movie.genres, categoriesList);
+	createCategories(movie.genres, movieDetailCategoriesList);
+	getRelatedMoviesById(movie.id);
 }
 
 /** Gets movies by search.
+ * @param {String} query Query made by user
  */
 async function getMoviesBySearch(query) {
 	const { data } = await apiV3(pathSearchMovie, {
@@ -82,6 +90,16 @@ async function getMoviesBySearch(query) {
 	console.log(movies);
 
 	createMovies(movies, genericListSection);
+}
+
+/** Gets related movies given the ID of a movie.
+ * @param {Number} movieId The ID of the movie.
+ */
+async function getRelatedMoviesById(movieId) {
+	const { data } = await apiV3(getPathMovieRecommendations(movieId));
+
+	const relatedMovies = data.results;
+	createMovies(relatedMovies, relatedMoviesScrollArea);
 }
 
 /** Gets all trending movies.
