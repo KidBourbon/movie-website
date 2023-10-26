@@ -37,7 +37,7 @@
 
 html {
 	font-size: 6.25%;
-	background-color: var(--green-medium-3);
+	background-color: var(--green-dark-1);
 }
 
 body {
@@ -124,7 +124,7 @@ footer {
 }
 
 .categories-preview__list,
-.categories-list {
+.movie-detail__category-list {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -139,11 +139,10 @@ footer {
 
 .header--long {
 	background: linear-gradient(
-			180deg,
-			rgba(0, 0, 0, 0.35) 19.27%,
-			rgba(0, 0, 0, 0) 29.17%
-		),
-		url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
+		180deg,
+		rgba(0, 0, 0, 0.35) 19.27%,
+		rgba(0, 0, 0, 0) 29.17%
+	);
 	background-size: cover;
 	height: 480px;
 	position: fixed;
