@@ -1,5 +1,11 @@
 // import axios from 'axios';
 
+/*
+ * *********
+ *   AXIOS
+ * *********
+ */
+
 const apiV3 = axios.create({
 	baseURL: 'https://api.themoviedb.org/3',
 	headers: {
@@ -7,6 +13,12 @@ const apiV3 = axios.create({
 		Authorization: `Bearer ${ACCESS_TOKEN}`,
 	},
 });
+
+/*
+ * *********
+ *   PATHS
+ * *********
+ */
 
 const posterPathWidth300 = 'https://image.tmdb.org/t/p/w300';
 const posterPathWidth500 = 'https://image.tmdb.org/t/p/w500';
@@ -20,13 +32,19 @@ function getPathMovieRecommendations(movieId) {
 	return `${pathMovie}/${movieId}/recommendations`;
 }
 
+/*
+ * *******
+ *   GET
+ * *******
+ */
+
 /** Gets all trending movies.
  */
 async function getTrendingMoviesPreview() {
 	const { data } = await apiV3(pathTrendingMovies);
 	const movies = data.results;
 
-	createMovies(movies, trendingPreviewMovieList);
+	createMovies(movies, trendingPreviewMovieList, true);
 }
 
 /** Gets all categories.
@@ -111,36 +129,40 @@ async function getTrendingMovies() {
 	createMovies(movies, genericListSection);
 }
 
+/*
+ * ***********
+ *   CREATE
+ * ***********
+ */
+
 /** Creates movie cards for each movie in the list and places them in a container.
  * @param {Array} movies List of movies.
  * @param {HTMLElement} container HTML element as container.
  */
-function createMovies(movies, container) {
+function createMovies(movies, container, lazyLoad = false) {
 	container.innerHTML = '';
 
 	movies.forEach((movie) => {
-		/* HTML STRUCTURE */
-		// <div class="movie">
-		//   <img
-		//     src="${posterPathWidth300}${movie.poster_path}"
-		//     class="movie__img"
-		//     alt="${movie.title}"
-		//   />
-		// </div>
-
-		const divMovie = document.createElement('div');
-		divMovie.classList.add('movie');
-		divMovie.addEventListener('click', () => {
+		const div = document.createElement('div');
+		div.classList.add('movie');
+		div.addEventListener('click', () => {
 			setHash(hashMovie + movie.id);
 		});
 
 		const img = document.createElement('img');
 		img.classList.add('movie__img');
-		img.setAttribute('src', `${posterPathWidth300}${movie.poster_path}`);
+		img.setAttribute(
+			lazyLoad ? 'poster-path' : 'src',
+			`${posterPathWidth300}${movie.poster_path}`
+		);
 		img.setAttribute('alt', `${movie.title}`);
 
-		divMovie.appendChild(img);
-		container.appendChild(divMovie);
+		if (lazyLoad) {
+			lazyLoader.observe(img);
+		}
+
+		div.appendChild(img);
+		container.appendChild(div);
 	});
 }
 
@@ -172,3 +194,18 @@ function createCategories(categories, container) {
 		container.appendChild(divCategory);
 	});
 }
+
+/*
+ * *********
+ *   UTILS
+ * *********
+ */
+
+const lazyLoader = new IntersectionObserver((entries) => {
+	entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+			const imgSrc = entry.target.getAttribute('poster-path');
+			entry.target.setAttribute('src', imgSrc);
+		}
+	});
+});
