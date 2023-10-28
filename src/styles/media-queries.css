@@ -1,0 +1,20 @@
+/* Tablet */
+@media (min-width: 426px) {
+	.categories-preview__list {
+		width: 80vw;
+		justify-content: flex-start;
+	}
+}
+
+@media (min-width: 700px) {
+	.header__search-form {
+		width: 80%;
+	}
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+	.header__search-form {
+		width: 60%;
+	}
+}
