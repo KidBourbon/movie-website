@@ -1,3 +1,6 @@
+let currentPage = 1;
+let infiniteScrollFunction;
+
 const hashTrends = '#trends';
 const hashSearch = '#search=';
 const hashMovie = '#movie=';
@@ -6,6 +9,15 @@ const hashHome = '#home';
 
 window.addEventListener('DOMContentLoaded', navigator);
 window.addEventListener('hashchange', navigator);
+window.addEventListener(
+	'scroll',
+	() => {
+		if (scrollToBottom() && infiniteScrollFunction) {
+			infiniteScrollFunction();
+		}
+	},
+	{ passive: false }
+);
 
 searchBtn.addEventListener('click', () => {
 	setHash(hashSearch + searchInput.value);
@@ -54,6 +66,7 @@ function loadTrendsPage() {
 
 	headerTitleCategoryView.innerText = 'Trending';
 	getTrendingMovies();
+	infiniteScrollFunction = getPaginatedTrendingMovies;
 }
 
 function loadSearchPage() {
@@ -108,7 +121,7 @@ function loadCategoriesPage() {
 	const categoryData = location.hash.split('=')[1];
 	const [categoryId, categoryName] = categoryData.split('-');
 
-	headerTitleCategoryView.innerText = categoryName;
+	headerTitleCategoryView.innerText = categoryName.replace('+', ' ');
 	getMoviesByCategory(categoryId);
 }
 
@@ -128,6 +141,14 @@ function loadHomePage() {
 
 	getTrendingMoviesPreview();
 	getCategoriesPreview();
+
+	infiniteScrollFunction = undefined;
+}
+
+function scrollToBottom() {
+	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+	return scrollTop + clientHeight >= scrollHeight - 900;
 }
 
 function setHash(newHash) {
