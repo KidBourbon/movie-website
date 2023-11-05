@@ -1,5 +1,7 @@
 let currentPage = 1;
 let infiniteScrollFunction;
+let query;
+let categoryId;
 
 const hashTrends = '#trends';
 const hashSearch = '#search=';
@@ -12,8 +14,8 @@ window.addEventListener('hashchange', navigator);
 window.addEventListener(
 	'scroll',
 	() => {
-		if (scrollToBottom() && infiniteScrollFunction) {
-			infiniteScrollFunction();
+		if (canScroll()) {
+			infiniteScrollFunction(++currentPage);
 		}
 	},
 	{ passive: false }
@@ -46,8 +48,8 @@ function navigator() {
 		loadHomePage();
 	}
 
-	document.body.scrollTop = 0;
-	document.documentElement.scrollTop = 0;
+	resetCurrentPage();
+	resetScroll();
 }
 
 function loadTrendsPage() {
@@ -65,8 +67,8 @@ function loadTrendsPage() {
 	movieDetailSection.classList.add('inactive');
 
 	headerTitleCategoryView.innerText = 'Trending';
-	getTrendingMovies();
 	infiniteScrollFunction = getPaginatedTrendingMovies;
+	getTrendingMovies();
 }
 
 function loadSearchPage() {
@@ -83,8 +85,9 @@ function loadSearchPage() {
 	genericListSection.classList.remove('inactive');
 	movieDetailSection.classList.add('inactive');
 
-	const query = location.hash.split('=')[1];
-	getMoviesBySearch(query);
+	query = location.hash.split('=')[1];
+	infiniteScrollFunction = getPaginatedMoviesBySearch;
+	getMoviesBySearch();
 }
 
 function loadMovieDetailPage() {
@@ -119,9 +122,11 @@ function loadCategoriesPage() {
 	movieDetailSection.classList.add('inactive');
 
 	const categoryData = location.hash.split('=')[1];
-	const [categoryId, categoryName] = categoryData.split('-');
+	const [id, name] = categoryData.split('-');
 
-	headerTitleCategoryView.innerText = categoryName.replace('+', ' ');
+	categoryId = id;
+	headerTitleCategoryView.innerText = name.replace('+', ' ');
+	infiniteScrollFunction = getPaginatedMoviesByCategory;
 	getMoviesByCategory(categoryId);
 }
 
@@ -145,10 +150,23 @@ function loadHomePage() {
 	infiniteScrollFunction = undefined;
 }
 
-function scrollToBottom() {
+function ScrolledToBottom() {
 	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
 	return scrollTop + clientHeight >= scrollHeight - 900;
+}
+
+function resetCurrentPage() {
+	currentPage = 1;
+}
+
+function resetScroll() {
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+}
+
+function canScroll() {
+	return infiniteScrollFunction && currentPage < maxPages && ScrolledToBottom();
 }
 
 function setHash(newHash) {
