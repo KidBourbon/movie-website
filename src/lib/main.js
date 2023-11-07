@@ -207,6 +207,8 @@ async function getPaginatedTrendingMovies(page) {
 	});
 }
 
+/** Gets all favorite movies
+ */
 function getFavoriteMovies() {
 	const favoriteMoviesObj = getFavoriteMoviesList();
 	const favoriteMoviesList = Object.values(favoriteMoviesObj);
@@ -223,8 +225,7 @@ function getFavoriteMovies() {
  * ***********
  */
 
-/**
- * Creates movie cards for each movie in the list and places them in a container.
+/** Creates movie cards for each movie in the list and places them in a container.
  * @param {Array} movies List of movies.
  * @param {HTMLElement} container HTML element as container.
  * @param {Object} options Set of options.
@@ -235,7 +236,7 @@ function createMovies(movies, container, { lazyLoad = false, clear = true }) {
 	movies.forEach((movie) => {
 		const movieDiv = createMovieDiv(movie);
 		const movieImg = createMovieImg(movie, lazyLoad);
-		const movieBtn = createMovieBtn(movie);
+		const movieBtn = createMovieFavoriteBtn(movie);
 
 		addItemToLazyLoader(movieImg, lazyLoad);
 
@@ -245,6 +246,10 @@ function createMovies(movies, container, { lazyLoad = false, clear = true }) {
 	});
 }
 
+/** Creates a movie div using the data of a movie.
+ * @param {Object} movie A movie object.
+ * @returns The movie div.
+ */
 function createMovieDiv(movie) {
 	const movieDiv = document.createElement('div');
 	movieDiv.id = movie.id;
@@ -253,6 +258,11 @@ function createMovieDiv(movie) {
 	return movieDiv;
 }
 
+/** Creates the movie image.
+ * @param {Object} movie The movie object.
+ * @param {Boolean} lazyLoad Apply lazy load?
+ * @returns The movie image.
+ */
 function createMovieImg(movie, lazyLoad) {
 	const movieImg = document.createElement('img');
 	movieImg.classList.add('movie__img');
@@ -271,29 +281,40 @@ function createMovieImg(movie, lazyLoad) {
 	return movieImg;
 }
 
-function createMovieBtn(movie) {
-	const movieBtn = document.createElement('button');
-	movieBtn.classList.add('movie__btn');
-	movieBtn.addEventListener('click', () => {
+/** Creates the favorite movie button.
+ * @param {Object} movie The movie object.
+ * @returns The favorite movie button.
+ */
+function createMovieFavoriteBtn(movie) {
+	const movieFavoriteBtn = document.createElement('button');
+	movieFavoriteBtn.classList.add('movie__btn');
+	movieFavoriteBtn.addEventListener('click', () => {
 		favoritizeMovie(movie);
-		favoritizeMovieBtn(movie, movieBtn);
+		favoritizeMovieBtn(movie, movieFavoriteBtn);
 		getFavoriteMovies();
 		isTrendingSectionActive() && updateFavoriteMovieBtn(movie);
 	});
 
-	favoritizeMovieBtn(movie, movieBtn);
+	favoritizeMovieBtn(movie, movieFavoriteBtn);
 
-	return movieBtn;
+	return movieFavoriteBtn;
 }
 
-function favoritizeMovieBtn(movie, movieBtn) {
+/** Favoritize / Unfavoritize the movie depending on whether it is already a favorite or not.
+ * @param {Object} movie The movie object.
+ * @param {Object} movieFavoriteBtn The movie favorite button.
+ */
+function favoritizeMovieBtn(movie, movieFavoriteBtn) {
 	if (getFavoriteMoviesList()[movie.id]) {
-		movieBtn.classList.add('movie__btn--favorite');
+		movieFavoriteBtn.classList.add('movie__btn--favorite');
 	} else {
-		movieBtn.classList.remove('movie__btn--favorite');
+		movieFavoriteBtn.classList.remove('movie__btn--favorite');
 	}
 }
 
+/** Updates the favorites button in the trending movie preview section.
+ * @param {Object} movie The movie object.
+ */
 function updateFavoriteMovieBtn(movie) {
 	const movieDivList = trendingPreviewMovieList.childNodes;
 
@@ -336,10 +357,16 @@ function createCategories(categories, container) {
  * ********
  */
 
+/** Gets the list with favorite movies.
+ * @returns A list with favorite movies.
+ */
 function getFavoriteMoviesList() {
 	return JSON.parse(localStorage.getItem('favoriteMovies')) || {};
 }
 
+/** Adds / Removes a movie from the favorites list.
+ * @param {Object} movie The movie object.
+ */
 function favoritizeMovie(movie) {
 	const favoriteMovies = getFavoriteMoviesList();
 

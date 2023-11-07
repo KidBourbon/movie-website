@@ -14,7 +14,7 @@ window.addEventListener('hashchange', navigator);
 window.addEventListener(
 	'scroll',
 	() => {
-		if (canScroll()) {
+		if (canLoadNewPage()) {
 			infiniteScrollFunction(++currentPage);
 		}
 	},
@@ -33,6 +33,8 @@ headerArrow.addEventListener('click', () => {
 	history.back();
 });
 
+/** Navigates between pages.
+ */
 function navigator() {
 	const currentHash = getHash();
 
@@ -156,6 +158,9 @@ function loadHomePage() {
 	infiniteScrollFunction = undefined;
 }
 
+/** Did the user scroll to the bottom of the page?
+ * @returns
+ */
 function ScrolledToBottom() {
 	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
@@ -171,7 +176,10 @@ function resetScroll() {
 	document.documentElement.scrollTop = 0;
 }
 
-function canScroll() {
+/** Is it possible to load a new page with movies?
+ * @returns
+ */
+function canLoadNewPage() {
 	return infiniteScrollFunction && currentPage < maxPages && ScrolledToBottom();
 }
 
