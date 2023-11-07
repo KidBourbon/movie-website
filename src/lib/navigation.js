@@ -65,6 +65,7 @@ function loadTrendsPage() {
 	categoriesPreviewSection.classList.add('inactive');
 	genericListSection.classList.remove('inactive');
 	movieDetailSection.classList.add('inactive');
+	favoriteMoviesSection.classList.add('inactive');
 
 	headerTitleCategoryView.innerText = 'Trending';
 	infiniteScrollFunction = getPaginatedTrendingMovies;
@@ -84,6 +85,7 @@ function loadSearchPage() {
 	categoriesPreviewSection.classList.add('inactive');
 	genericListSection.classList.remove('inactive');
 	movieDetailSection.classList.add('inactive');
+	favoriteMoviesSection.classList.add('inactive');
 
 	query = location.hash.split('=')[1];
 	infiniteScrollFunction = getPaginatedMoviesBySearch;
@@ -102,6 +104,7 @@ function loadMovieDetailPage() {
 	categoriesPreviewSection.classList.add('inactive');
 	genericListSection.classList.add('inactive');
 	movieDetailSection.classList.remove('inactive');
+	favoriteMoviesSection.classList.add('inactive');
 
 	const movieId = location.hash.split('=')[1];
 	getMovieById(movieId);
@@ -120,6 +123,7 @@ function loadCategoriesPage() {
 	categoriesPreviewSection.classList.add('inactive');
 	genericListSection.classList.remove('inactive');
 	movieDetailSection.classList.add('inactive');
+	favoriteMoviesSection.classList.add('inactive');
 
 	const categoryData = location.hash.split('=')[1];
 	const [id, name] = categoryData.split('-');
@@ -143,9 +147,11 @@ function loadHomePage() {
 	categoriesPreviewSection.classList.remove('inactive');
 	genericListSection.classList.add('inactive');
 	movieDetailSection.classList.add('inactive');
+	favoriteMoviesSection.classList.remove('inactive');
 
 	getTrendingMoviesPreview();
 	getCategoriesPreview();
+	getFavoriteMovies();
 
 	infiniteScrollFunction = undefined;
 }
@@ -167,6 +173,10 @@ function resetScroll() {
 
 function canScroll() {
 	return infiniteScrollFunction && currentPage < maxPages && ScrolledToBottom();
+}
+
+function isTrendingSectionActive() {
+	return !trendingPreviewSection.classList.contains('inactive');
 }
 
 function setHash(newHash) {
