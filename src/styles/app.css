@@ -107,7 +107,8 @@ button {
 /* Shared */
 .header,
 .trending-preview__header,
-.categories-preview {
+.categories-preview,
+.favorites__title {
 	padding: 0 14px;
 }
 
@@ -117,6 +118,7 @@ footer {
 }
 
 .movie {
+	position: relative;
 	cursor: pointer;
 }
 
@@ -141,6 +143,21 @@ footer {
 	border-radius: 8px;
 }
 
+.movie__btn {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	box-shadow: 0 0 12px 4px var(--green-medium-1);
+	background: no-repeat center/28px 28px url('../imgs/no-favorite.png');
+}
+
+.movie__btn--favorite {
+	background: no-repeat center/28px 28px url('../imgs/favorite.png');
+}
+
 .categories-preview__list,
 .movie-detail__category-list {
 	display: flex;
@@ -162,6 +179,16 @@ footer {
 	border-radius: 8px;
 	background-color: var(--green-light-2);
 	animation: loading-skeleton infinite 1.5s;
+}
+
+.categories-preview,
+.favorites {
+	margin-top: 30px;
+}
+
+.categories-preview__title,
+.favorites__title {
+	margin-bottom: 18px;
 }
 
 /* Header */
@@ -228,7 +255,7 @@ footer {
 	border-bottom-right-radius: 8px;
 }
 
-/* Trending Preview */
+/* Trending Preview and Favorites */
 .trending-preview__header {
 	display: flex;
 	align-items: center;
@@ -241,9 +268,10 @@ footer {
 	border-radius: 8px;
 }
 
-.trending-preview__movie-list {
+.trending-preview__movie-list,
+.favorites__movie-list {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	overflow-x: scroll;
 	gap: 24px;
@@ -251,7 +279,8 @@ footer {
 	padding: 12px 14px 24px;
 }
 
-.trending-preview__movie-list .movie {
+.trending-preview__movie-list .movie,
+.favorites__movie-list .movie {
 	flex: 0 0 25vw;
 	min-width: 200px;
 	max-width: 250px;
@@ -260,7 +289,8 @@ footer {
 	max-height: calc(250px * 1.5);
 }
 
-.trending-preview__movie-list .movie .movie__img {
+.trending-preview__movie-list .movie .movie__img,
+.favorites__movie-list .movie .movie__img {
 	width: 100%;
 	height: 100%;
 	min-height: 100%;
@@ -281,15 +311,6 @@ footer {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-
-.categories-preview {
-	max-width: 100vw;
-	margin-top: 30px;
-}
-
-.categories-preview__title {
-	margin-bottom: 18px;
 }
 
 #id28::before {
