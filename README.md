@@ -1,7 +1,7 @@
 # Kid B. Movies
-✅ Personal movie website where detailed information about trending and other movies is displayed.
+✅ Website with detailed information about your favorite movies and the movies with the highest number of views at the moment.
 
-✅ Page made with HTML, CSS and JavaScript.
+✅ Made with HTML, CSS and JavaScript.
 
 ✅ It consumes a free REST API from themoviedb.org website to get all the necessary information about the movies.
 
